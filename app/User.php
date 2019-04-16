@@ -25,4 +25,10 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function rentals()
+    {
+        return $this->belongsToMany('App\User', 'rentals')
+            ->withPivot(['movie_id', 'user_id', 'rent_date', 'return_date', 'disc_type']);
+    }
 }
